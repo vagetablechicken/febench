@@ -8,7 +8,7 @@ LABEL org.opencontainers.image.authors="Huang Wei"
 # TAG
 
 # ignores in .dockerignore
-COPY * /work/febench/
+COPY . /work/febench/
 # febench use zk 7181
 RUN sed -i'' 's/localhost:2181/localhost:7181/g' /work/openmldb/conf/hosts
 
