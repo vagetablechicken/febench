@@ -165,14 +165,14 @@ We have included a comprehensive testing procedure in a docker for you to try.
 1. Download docker image.
 
 ```bash
-docker pull vegatablechicken/febench:0.5.0
+docker pull vegatablechicken/febench:0.5.0-lmem
 ```
 
 2. Run the image.
 
 ```bash
 # note that you need download the data in advance and mount it into the container.
-docker run -it -v <data path>:/work/febench/dataset <image id>
+docker run -it -v <data path>:/work/febench/dataset vegatablechicken/febench:0.5.0-lmem
 ```
 
 3. Start the clusters, addr is `localhost:7181`, path is `/openmldb``.
