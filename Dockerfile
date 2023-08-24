@@ -9,7 +9,7 @@ LABEL org.opencontainers.image.authors="Huang Wei"
 
 # ignores in .dockerignore
 COPY . /work/febench/
-# febench use zk 7181
+# febench use zk 7181 TODO default driver memory
 RUN sed -i'' 's/localhost:2181/localhost:7181/g' /work/openmldb/conf/hosts
 
 # maven
