@@ -3,9 +3,11 @@ FROM 4pdosc/openmldb:0.8.2 AS builder
 
 FROM openjdk:11.0.13-jdk-slim-bullseye
 COPY --from=builder /work/openmldb /work/openmldb
+COPY --from=builder /work/init.sh /work/
+
 # group name
 LABEL org.opencontainers.image.authors="Huang Wei"
-# TAG
+# TODO TAG
 
 # ignores in .dockerignore
 COPY . /work/febench/
