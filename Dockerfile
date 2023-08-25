@@ -23,7 +23,7 @@ RUN sed -i'' '/\[tablet\]/a localhost:10923 /tmp/openmldb/tablet-3' /work/openml
 RUN sed -i'' 's/spark.default.conf=/spark.default.conf=spark.driver.memory=32g;/g' /work/openmldb/conf/taskmanager.properties.template
 
 # maven
-RUN apt update && apt install -y vim maven curl procps git
+RUN apt update && apt install -y vim maven rsync curl procps git
 
 # temp: use un-released spark connector in OpenMLDB
 RUN curl -O --output-dir /work/openmldb/spark/jars http://43.138.115.238/download/test/openmldb-batch-0.8.2-SNAPSHOT.jar
