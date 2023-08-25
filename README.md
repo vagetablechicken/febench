@@ -120,10 +120,10 @@ docker run -it -v <data path>:/work/febench/dataset <image id>
 git pull 
 ```
 
-5. Enter `febench` directory and init the configuration.
+5. Enter `febench` directory, image **has** the env `FEBENCH_ROOT` and two `conf.properties`. If you want new conf files, e.g.
 
 ```bash
-cd /home/febench
+cd /work/febench
 export FEBENCH_ROOT=`pwd`
 sed s#\<path\>#$FEBENCH_ROOT# ./OpenMLDB/conf/conf.properties.template > ./OpenMLDB/conf/conf.properties
 sed s#\<path\>#$FEBENCH_ROOT# ./flink/conf/conf.properties.template > ./flink/conf/conf.properties
