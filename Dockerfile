@@ -2,9 +2,9 @@
 FROM 4pdosc/openmldb:0.8.2 AS builder
 
 FROM openjdk:11.0.13-jdk-slim-bullseye
-COPY --from=builder /work/openmldb /work/
-COPY --from=builder /work/init.sh /work/
-COPY --from=builder /work/zookeeper-3.4.14 /work/
+COPY --from=builder /work/openmldb /work/openmldb
+COPY --from=builder /work/init.sh /work/init.sh
+COPY --from=builder /work/zookeeper-3.4.14 /work/zookeeper-3.4.14
 
 # group name
 LABEL org.opencontainers.image.authors="Huang Wei"
@@ -26,7 +26,7 @@ RUN sed -i'' 's/spark.default.conf=/spark.default.conf=spark.driver.memory=32g;/
 RUN apt update && apt install -y vim maven curl procps git
 
 # temp: use un-released spark connector in OpenMLDB
-RUN curl -O --output-dir /work/openmldb/spark/jars http://43.138.115.238/download/test/openmldb-batch-0.8.2-SNAPSHOT.jar
+# RUN curl -O --output-dir /work/openmldb/spark/jars http://43.138.115.238/download/test/openmldb-batch-0.8.2-SNAPSHOT.jar
 RUN rm /work/openmldb/spark/jars/openmldb-batch-0.8.2.jar
 WORKDIR /work
 
