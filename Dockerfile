@@ -14,9 +14,10 @@ ENV FEBENCH_ROOT=/work/febench
 RUN sed s#\<path\>#$FEBENCH_ROOT# ./OpenMLDB/conf/conf.properties.template > ./OpenMLDB/conf/conf.properties
 RUN sed s#\<path\>#$FEBENCH_ROOT# ./flink/conf/conf.properties.template > ./flink/conf/conf.properties
 
-# febench use zk 7181 TODO default driver memory, 3 talet
+# febench use zk 7181, 3 tablet, default driver memory
 RUN sed -i'' 's/localhost:2181/localhost:7181/g' /work/openmldb/conf/hosts
-RUN sed -i'' 's/[tablet]/localhost:7181/g' /work/openmldb/conf/hosts
+RUN sed -i'' '/\[tablet\]/a localhost:10923 /tmp/openmldb/tablet-3' /work/openmldb/conf/hosts
+RUN sed -i'' 's/spark.default.conf=/spark.default.conf=spark.driver.memory=32g;/g' /work/openmldb/conf/taskmanager.properties.template
 
 # maven
 RUN apt update && apt install -y vim maven curl procps git
