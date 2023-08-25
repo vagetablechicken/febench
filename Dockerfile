@@ -2,8 +2,9 @@
 FROM 4pdosc/openmldb:0.8.2 AS builder
 
 FROM openjdk:11.0.13-jdk-slim-bullseye
-COPY --from=builder /work/openmldb /work/openmldb
+COPY --from=builder /work/openmldb /work/
 COPY --from=builder /work/init.sh /work/
+COPY --from=builder /work/zookeeper-3.4.14 /work/
 
 # group name
 LABEL org.opencontainers.image.authors="Huang Wei"
